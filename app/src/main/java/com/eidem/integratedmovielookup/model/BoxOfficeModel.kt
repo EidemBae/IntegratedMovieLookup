@@ -7,9 +7,12 @@ data class BoxOfficeModel(
     val movieNmEn: String,
     val synop: String,
     val showTm: String,
+    val showTs: String,
     val director: String,
     val dtNm: String,
     val repNationCd: String,
     val genre: String,
-    val watchGradeNm: String
+    val watchGradeNm: String,
+    val openDt: String,
+    val moviePrdtStat: String,
 )

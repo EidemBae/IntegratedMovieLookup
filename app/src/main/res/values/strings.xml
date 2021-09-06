@@ -1,3 +1,17 @@
 <resources>
     <string name="app_name">IntegratedMovieLookup</string>
+    <string name="admob_app_id">ca-app-pub-3140209425232847~8849165724</string>
+    <string name="banner_ad_unit_id">a-app-pub-3140209425232847/4662508704</string>
+    <string name="banner_ad_unit_id_for_test">ca-app-pub-3940256099942544/6300978111</string>
+
+    <string name="movie_info_open_date">개봉일</string>
+    <string name="movie_info_product_state">제작상태</string>
+    <string name="movie_info_watch_grade_number">관람등급</string>
+    <string name="movie_info_running_time">상영시간</string>
+    <string name="movie_info_nation_name">제작국가</string>
+    <string name="movie_info_director">감독</string>
+    <string name="movie_info_genre">장르</string>
+    <string name="movie_info_director_company">제작사</string>
+
+    <string name="inquire_movie_time">상영시간 조회</string>
 </resources>

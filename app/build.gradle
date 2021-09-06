@@ -49,4 +49,8 @@ dependencies {
     implementation 'com.squareup.retrofit2:converter-gson:2.7.2'
     // Scalars 라이브러리
     implementation 'com.squareup.retrofit2:converter-scalars:2.7.2'
+    // Glide 라이브러리
+    implementation 'com.github.bumptech.glide:glide:4.11.0'
+    // admob
+    implementation 'com.google.android.gms:play-services-ads:18.0.0'
 }

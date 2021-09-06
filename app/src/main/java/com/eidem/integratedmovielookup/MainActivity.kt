@@ -2,14 +2,12 @@ package com.eidem.integratedmovielookup
 
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.RecyclerView
 import com.eidem.integratedmovielookup.databinding.ActivityMainBinding
 import com.eidem.integratedmovielookup.utils.ViewUtils
 
 class MainActivity : BaseActivity() {
     private lateinit var binding: ActivityMainBinding
-
     private lateinit var viewModel: MainViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -20,11 +18,16 @@ class MainActivity : BaseActivity() {
 
     override fun initView() {
         viewModel = MainViewModel(this, binding)
-        initRecyclerView(binding.recyclerView)
+        initDayOfWeekList(binding.dayOfWeekList)
+        initBoxOfficeMovieList()
     }
 
-    private fun initRecyclerView(recyclerView: RecyclerView) {
+    private fun initDayOfWeekList(recyclerView: RecyclerView) {
         ViewUtils.setHorizontalRecyclerView(this, recyclerView)
         viewModel.initDayOfWeekLiveData()
+    }
+
+    private fun initBoxOfficeMovieList() {
+        viewModel.requestBoxOfficeList()
     }
 }
