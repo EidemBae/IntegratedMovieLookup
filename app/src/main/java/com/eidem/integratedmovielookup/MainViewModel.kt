@@ -7,7 +7,8 @@ import com.eidem.integratedmovielookup.databinding.ActivityMainBinding
 import com.eidem.integratedmovielookup.adapter.DayOfWeekAdapter
 
 class MainViewModel(activity: Activity, binding: ActivityMainBinding) {
-    private var dayOfWeekDataListLiveData = MutableLiveData<ArrayList<DayOfWeekAdapter.ViewHolderData>>()
+    private var dayOfWeekDataListLiveData =
+        MutableLiveData<ArrayList<DayOfWeekAdapter.ViewHolderData>>()
     private var dayOfWeekDataList = arrayListOf<DayOfWeekAdapter.ViewHolderData>()
     private var dayOfWeekAdapter: DayOfWeekAdapter? = null
 
@@ -25,8 +26,7 @@ class MainViewModel(activity: Activity, binding: ActivityMainBinding) {
                         dayOfWeekDataList.add(it[i].clone())
                     }
                 }
-            }
-            else {
+            } else {
                 dayOfWeekAdapter!!.updateList(dayOfWeekDataList)
             }
         })
@@ -34,7 +34,7 @@ class MainViewModel(activity: Activity, binding: ActivityMainBinding) {
 
     private fun createDayOfWeekAdapter(): DayOfWeekAdapter {
         return DayOfWeekAdapter(dayOfWeekDataListLiveData).apply {
-            this.setOnItemSelectedListener(object: DayOfWeekAdapter.OnItemSelectedListener {
+            this.setOnItemSelectedListener(object : DayOfWeekAdapter.OnItemSelectedListener {
                 override fun onSelected(position: Int) {
 
                 }
