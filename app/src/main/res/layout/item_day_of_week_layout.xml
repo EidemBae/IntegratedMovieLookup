@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="android.graphics.Color"/>
+        <import type="com.eidem.integratedmovielookup.R"/>
+        <variable
+            name="data"
+            type="com.eidem.integratedmovielookup.adapter.DayOfWeekAdapter.ViewHolderData" />
+
+        <variable
+            name="position"
+            type="Integer" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingStart="5dp"
+        android:paddingEnd="5dp"
+        tools:context=".MainActivity">
+
+        <TextView
+            android:id="@+id/tv_number"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:gravity="center"
+            android:background="@drawable/background_round_rectangle_blue"
+            android:textStyle="bold"
+            android:text="@{String.valueOf(data.num)}"
+            setTextColor="@{data.selected ? Color.WHITE : Color.BLACK}"
+            setBackground="@{data.selected ? R.drawable.background_round_rectangle_blue : 0}"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintDimensionRatio="1:1"
+            tools:text="5"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_below="@id/tv_number"
+            android:gravity="center"
+            android:text="@{data.str}"
+            setTextColor="@{data.selected ? Color.BLUE : Color.BLACK}"
+            app:layout_constraintTop_toBottomOf="@id/tv_number"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            tools:text="오늘"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
