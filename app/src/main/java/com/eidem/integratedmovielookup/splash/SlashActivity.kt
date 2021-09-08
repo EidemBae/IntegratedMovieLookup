@@ -1,7 +1,7 @@
 package com.eidem.integratedmovielookup.splash
 
 import android.os.Bundle
-import com.eidem.integratedmovielookup.BaseActivity
+import com.eidem.integratedmovielookup.ui.activity.BaseActivity
 
 class SlashActivity: BaseActivity() {
 

@@ -1,4 +1,4 @@
-package com.eidem.integratedmovielookup
+package com.eidem.integratedmovielookup.ui.activity
 
 import androidx.appcompat.app.AppCompatActivity
 

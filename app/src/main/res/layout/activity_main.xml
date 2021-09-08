@@ -8,13 +8,13 @@
     <data>
         <variable
             name="viewModel"
-            type="com.eidem.integratedmovielookup.MainViewModel" />
+            type="com.eidem.integratedmovielookup.ui.viewmodel.MainViewModel" />
     </data>
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".MainActivity">
+        tools:context=".ui.activity.MainActivity">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/dayOfWeekList"
@@ -35,7 +35,8 @@
             android:layout_alignBottom="@id/moviePosterList"
             android:layout_alignEnd="@id/moviePosterList"
             android:layout_marginEnd="30dp"
-            android:text="@string/inquire_movie_time"/>
+            android:text="@string/inquire_movie_time"
+            android:onClick="@{()->viewModel.onClickShowSchedule()}"/>
 
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"

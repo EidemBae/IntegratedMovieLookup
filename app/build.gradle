@@ -53,4 +53,6 @@ dependencies {
     implementation 'com.github.bumptech.glide:glide:4.11.0'
     // admob
     implementation 'com.google.android.gms:play-services-ads:18.0.0'
+    // kakao map
+    implementation files('libs/libDaumMapAndroid.jar')
 }

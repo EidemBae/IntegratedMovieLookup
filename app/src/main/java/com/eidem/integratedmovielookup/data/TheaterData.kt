@@ -15,4 +15,6 @@ class TheaterData private constructor() {
     fun addCGVTheaterData(data: CGVTheaterData) {
         cgvTheaterDataList.add(data)
     }
+
+    fun getCGVDataList(): List<CGVTheaterData> = cgvTheaterDataList
 }

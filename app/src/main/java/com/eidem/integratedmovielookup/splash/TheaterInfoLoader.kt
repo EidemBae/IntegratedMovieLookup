@@ -2,6 +2,7 @@ package com.eidem.integratedmovielookup.splash
 
 import android.graphics.PointF
 import com.eidem.integratedmovielookup.api.ApiUtil
+import com.eidem.integratedmovielookup.data.LocationD
 import com.eidem.integratedmovielookup.data.TheaterData
 import com.eidem.integratedmovielookup.model.CGVTheaterData
 import retrofit2.Call
@@ -22,35 +23,35 @@ class TheaterInfoLoader {
             })
     }
 
-    private fun requestCGVTheaterLocation(data: CGVTheaterData, success: (Float, Float) -> Unit) {
+    private fun requestCGVTheaterLocation(data: CGVTheaterData, success: (LocationD) -> Unit) {
         ApiUtil.getCGVTicketApiService()
             .requestTheaterLocation(data.theaterCd, data.areaCd)
             .enqueue(object: Callback<String> {
                 override fun onResponse(call: Call<String>, response: Response<String>) {
                     val body = response.body().toString()
                     val location = parseLocation(body)
-                    success.invoke(location.x, location.y)
+                    success.invoke(location)
                 }
 
                 override fun onFailure(call: Call<String>, t: Throwable) {
 
                 }
 
-                private fun parseLocation(str: String): PointF {
+                private fun parseLocation(str: String): LocationD {
                     val tag_lat = "lat=\" + \""
                     var startIdx = str.indexOf(tag_lat)
-                    val location = PointF()
+                    val location = LocationD()
                     if (startIdx > -1) {
                         startIdx += tag_lat.length
                         val lat = str.substring(startIdx, str.indexOf("\"", startIdx))
-                        location.x = lat.toFloat()
+                        location.lat = lat.toDouble()
                     }
                     val tag_lng = "lng=\" + \""
                     startIdx = str.indexOf(tag_lng)
                     if (startIdx > -1) {
                         startIdx += tag_lng.length
                         val lng = str.substring(startIdx, str.indexOf("\"", startIdx))
-                        location.y = lng.toFloat()
+                        location.lng = lng.toDouble()
                     }
                     return location
                 }
@@ -63,11 +64,10 @@ class TheaterInfoLoader {
             val endIdx = source.indexOf(">", startIdx+1)
             val str = source.substring(startIdx, endIdx)
             parseDataModel(str)?.let {
-                requestCGVTheaterLocation(it) { lat, lng ->
-                    it.lat = lat
-                    it.lng = lng
+                requestCGVTheaterLocation(it) { location ->
+                    it.lat = location.lat
+                    it.lng = location.lng
                     TheaterData.getInstance().addCGVTheaterData(it)
-                    println("===> ${it.theaterNm} ${it.lat}, ${it.lng}")
                 }
             }
             startIdx = source.indexOf("<li data-gubun='AREA'", endIdx)

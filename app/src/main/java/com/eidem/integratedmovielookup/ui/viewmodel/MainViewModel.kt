@@ -1,6 +1,7 @@
-package com.eidem.integratedmovielookup
+package com.eidem.integratedmovielookup.ui.viewmodel
 
 import android.app.Activity
+import android.content.Intent
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.RecyclerView
@@ -9,6 +10,8 @@ import com.eidem.integratedmovielookup.adapter.DayOfWeekAdapter
 import com.eidem.integratedmovielookup.api.ApiUtil
 import com.eidem.integratedmovielookup.databinding.ActivityMainBinding
 import com.eidem.integratedmovielookup.model.BoxOfficeModel
+import com.eidem.integratedmovielookup.splash.TheaterInfoLoader
+import com.eidem.integratedmovielookup.ui.activity.TheaterMapActivity
 import com.google.android.gms.ads.AdListener
 import com.google.android.gms.ads.AdRequest
 import retrofit2.Call
@@ -17,7 +20,7 @@ import retrofit2.Response
 import com.eidem.integratedmovielookup.view.CarouselLayoutManager
 
 
-class MainViewModel(activity: Activity, val binding: ActivityMainBinding) {
+class MainViewModel(val activity: Activity, val binding: ActivityMainBinding) {
     private var boxOfficeModelList: List<BoxOfficeModel>? = null
     private var dayOfWeekDataListLiveData =
         MutableLiveData<ArrayList<DayOfWeekAdapter.ViewHolderData>>()
@@ -29,18 +32,18 @@ class MainViewModel(activity: Activity, val binding: ActivityMainBinding) {
     init {
         initAd()
         initDayOfWeekView(activity, binding)
-
+        binding.viewModel = this
+        //Todo test code
+        TheaterInfoLoader().requestCGVTheaterData()
     }
 
     private fun initAd() {
         binding.adView.loadAd(AdRequest.Builder().build())
         binding.adView.adListener = object: AdListener() {
             override fun onAdLoaded() {
-                println("====> Ad Loaded")
             }
 
             override fun onAdFailedToLoad(p0: Int) {
-                println("====> Ad load failed")
             }
         }
     }
@@ -148,5 +151,11 @@ class MainViewModel(activity: Activity, val binding: ActivityMainBinding) {
     private fun getCurrentItem(): Int {
         return (binding.moviePosterList.layoutManager as CarouselLayoutManager)
             .centerPosition()
+    }
+
+    fun onClickShowSchedule() {
+        println("====> onClickShowSchedule")
+        val intent = Intent(activity, TheaterMapActivity::class.java)
+        activity.startActivity(intent)
     }
 }

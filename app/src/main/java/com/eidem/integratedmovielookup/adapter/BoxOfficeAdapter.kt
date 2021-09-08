@@ -17,7 +17,6 @@ class BoxOfficeAdapter(private val list: List<BoxOfficeModel>): RecyclerView.Ada
         val image = view.findViewById<ImageView>(R.id.image)
 
         fun bind(url: String) {
-            println("====> Bind $url")
             Glide.with(image).load(url).into(image)
         }
     }
